@@ -31,8 +31,6 @@ public class UserController {
 		return ResponseEntity.ok(currentUser);
 	}
 
-	String name  = " hiiii";
-	String  age = "22";
 
 	@GetMapping("/alluser")
 	public ResponseEntity<?> getAllUsers() {
