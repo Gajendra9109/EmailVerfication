@@ -13,35 +13,34 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RequestMapping("/home")
 @RestController
 public class UserController {
 
- private HomePageService homePageService;
+	private HomePageService homePageService;
 
-    public UserController(HomePageService homePageService) {
-	super();
-	this.homePageService = homePageService;
-}
-
+	public UserController(HomePageService homePageService) {
+		super();
+		this.homePageService = homePageService;
+	}
+           
 	@GetMapping("/me")
-    public ResponseEntity<User> authenticatedUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User currentUser = (User) authentication.getPrincipal();
-        return ResponseEntity.ok(currentUser);
-    }
+	public ResponseEntity<User> authenticatedUser() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User currentUser = (User) authentication.getPrincipal();
+		return ResponseEntity.ok(currentUser);
+	}
 
-    @GetMapping("/alluser")
-    public ResponseEntity<?> getAllUsers() {
-        List<User> users = homePageService.allUsers();
-        if (users.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body("No Users Found");
-        }
-        return ResponseEntity.ok(users);
-    }
-    
-    
-    
-   
+	String name  = " hiiii";
+	String  age = "22";
+
+	@GetMapping("/alluser")
+	public ResponseEntity<?> getAllUsers() {
+		List<User> users = homePageService.allUsers();
+		if (users.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).body("No Users Found");
+		}
+		return ResponseEntity.ok(users);
+	}
+
 }
